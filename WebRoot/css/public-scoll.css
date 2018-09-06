@@ -1,0 +1,15 @@
+@charset "UTF-8";
+::-webkit-scrollbar{width:8px;height:6px;background:#eee;}
+::-webkit-scrollbar-button{background-color:#eee;}
+::-webkit-scrollbar-track{background:#eee;}
+::-webkit-scrollbar-track-piece{background:#eee}
+::-webkit-scrollbar-thumb{background:#aaaaaa;}
+::-webkit-scrollbar-corner{background:#82AFFF;}
+::-webkit-scrollbar-resizer{background:#FF0BEE;}
+scrollbar{-moz-appearance:none !important;background:rgb(0,255,0) !important;}
+scrollbarbutton{-moz-appearance:none !important;background-color:rgb(0,0,255) !important;}
+scrollbarbutton:hover{-moz-appearance:none !important;background-color:rgb(255,0,0) !important;}
+
+scrollbarbutton{display:none !important;}
+
+scrollbar[orient="vertical"]{min-width:8px !important;}

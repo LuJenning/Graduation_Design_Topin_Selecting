@@ -1,0 +1,59 @@
+@charset 'utf-8';
+/**
+ * Spring内置Iframe框架
+ * @authors Spring Bless (429829320@qq.com)
+ * @date    2018-05-24 17:19:53
+ * @version v1.0
+ */
+#spring-iframe-box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999999;
+    overflow: hidden;
+    background-color: rgba(0,0,0,.55);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#spring-iframe-box #iframe-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 600px;
+    z-index: 99999;
+    background-color: #fff;
+}
+#spring-iframe-box #iframe-wrap #iframe-top{
+    position: relative;
+    color: #555;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+#spring-iframe-box #iframe-wrap #iframe-top h3{
+	margin:0;
+	padding:0;
+    height: 35px;
+    line-height: 35px;
+    font-weight: normal;
+    font-size: 18px;
+    cursor: move;
+}
+#spring-iframe-box #iframe-wrap #iframe-top span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    color: #FC0335;
+    font-size: 16px;
+    cursor: pointer;
+}
+#spring-iframe-box #iframe-wrap #iframe-top span:hover{background-color: #eee;}
+#spring-iframe-box #iframe-wrap .iframe-body{padding: 5px;height: 555px;}
+#spring-iframe-box #iframe-wrap .iframe-body .spring-iframe{width: 100%;height: inherit;overflow: auto;}

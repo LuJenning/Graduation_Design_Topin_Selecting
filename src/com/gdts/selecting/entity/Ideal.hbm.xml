@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.gdts.selecting.entity.Ideal" table="ideal_info" catalog="topicselecting_db">
+		<id name="id" type="java.lang.Integer">
+			<column name="id"/>
+			<generator class="native"/>
+		</id>
+	<property name="idealId" type="java.lang.String">
+		<column name="ideal_id">
+			<comment>志愿id</comment>
+		</column>
+	</property>
+	<property name="idealType" type="java.lang.String">
+		<column name="ideal_type">
+			<comment>志愿类型</comment>
+		</column>
+	</property>
+	<property name="topicId" type="java.lang.String">
+		<column name="topic_id">
+			<comment>关联课题编号</comment>
+		</column>
+	</property>
+	<property name="userId" type="java.lang.String">
+		<column name="user_id">
+			<comment>关联用户id</comment>
+		</column>
+	</property>
+	<property name="selectDate" length="0">
+		<column name="select_date">
+			<comment>填报志愿时间</comment>
+		</column>
+	</property>
+	<property name="instituteId" type="java.lang.Integer">
+		<column name="institute_id">
+			<comment>学院id</comment>
+		</column>
+	</property><property name="isAccept" type="java.lang.Integer">
+		<column name="is_accept">
+			<comment>录取状态</comment>
+		</column>
+	</property>
+	</class>
+</hibernate-mapping>

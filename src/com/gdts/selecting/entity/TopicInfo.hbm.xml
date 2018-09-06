@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.gdts.selecting.entity.TopicInfo" table="topic_info"
+		catalog="topicselecting_db">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="topicId" type="java.lang.String">
+			<column name="topic_id">
+				<comment>课题id</comment>
+			</column>
+		</property>
+
+		<property name="topicContent" type="java.lang.String">
+			<column name="topic_content">
+				<comment>课题内容</comment>
+			</column>
+		</property>
+		<property name="topicTitle" type="java.lang.String">
+			<column name="topic_title">
+				<comment>课题标题</comment>
+			</column>
+		</property>
+		<property name="topicRequest" type="java.lang.String">
+			<column name="topic_request">
+				<comment>课题要求</comment>
+			</column>
+		</property>
+		<property name="topicSurplus" type="java.lang.Integer">
+			<column name="topic_surplus">
+				<comment>课题总量</comment>
+			</column>
+		</property>
+		<property name="issueDate">
+			<column name="issue_date" length="0">
+				<comment>课题发布时间</comment>
+			</column>
+		</property>
+		<property name="userId" type="java.lang.String">
+			<column name="user_id">
+				<comment>关联教师的id</comment>
+			</column>
+		</property>
+		<property name="instituteId" type="java.lang.Integer">
+			<column name="institute_id">
+				<comment>专业id</comment>
+			</column>
+		</property>
+		<property name="intNelen" type="java.lang.Integer">
+			<column name="int_nelen" default="0">
+				<comment>已选课题量：已选课题量 小于或等 课题总量</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

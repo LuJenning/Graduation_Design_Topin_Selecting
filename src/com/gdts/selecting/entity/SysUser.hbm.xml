@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+		<class name="com.gdts.selecting.entity.SysUser" table="sys_user" catalog="topicselecting_db">
+		    <!-- hibernate二级缓存 -->
+		    <cache usage="read-write"/>
+			<id name="id" type="java.lang.Integer">
+				<column name="id"/>
+				<generator class="native"/>
+			</id>
+			<property name="userId" type="java.lang.String">
+				<column name="user_id">
+					<comment>用户id</comment>
+				</column>
+			</property>
+			<property name="userName" type="java.lang.String">
+				<column name="user_name">
+					<comment>用户姓名</comment>
+				</column>
+			</property>
+			<property name="userPassword" type="java.lang.String">
+				<column name="user_password">
+					<comment>用户密码</comment>
+				</column>
+			</property>
+			<property name="userSex" type="java.lang.Integer">
+				<column name="user_sex">
+					<comment>用户性别</comment>
+				</column>
+			</property>
+			<property name="userBirthday" type="java.util.Date">
+				<column name="user_birthday">
+					<comment>用户出生日期</comment>
+				</column>
+			</property>
+			<property name="userType" type="java.lang.Integer">
+				<column name="user_type">
+					<comment>用户类型：1管理员，2教师，3学生</comment>
+				</column>
+			</property>
+			<property name="userPhone" type="java.lang.String">
+				<column name="user_phone">
+					<comment>用户电话</comment>
+				</column>
+			</property>
+			<property name="instituteId" type="java.lang.Integer">
+				<column name="institute_id">
+					<comment>学院id</comment>
+				</column>
+			</property>
+			<property name="classId" type="java.lang.Integer">
+				<column name="class_id">
+					<comment>班级id</comment>
+				</column>
+			</property>
+			<property name="teacherTitle" type="java.lang.String">
+				<column name="teacher_title">
+					<comment>教师职称</comment>
+				</column>
+			</property>
+			<property name="userNative" type="java.lang.String">
+				<column name="user_native">
+					<comment>用户籍贯</comment>
+				</column>
+			</property>
+			<property name="studentScore" type="java.lang.Double">
+				<column name="student_score">
+					<comment>学生成绩</comment>
+				</column>
+			</property>
+		</class>
+</hibernate-mapping>

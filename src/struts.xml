@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.custom.i18n.resources" value="sysmanage"/> 
+	<!-- 编码设置 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+	<constant name="struts.devMode" value="true" /><!-- 开发模式设置为true，实际运行记得改回false -->
+	<constant name="struts.action.extension" value="action" /><!-- struts的URL扩展名 -->
+	<!-- 允许访问静态成员变量 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.custom.i18n.resources" value="i18n/messages" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+
+	<!-- 文件上传；外部联系人的Excel表格数据 -->
+	<!-- 指定允许上传的文件最大字节数。默认值是2097152(2M);设置上传大小为500M -->
+	<constant name="struts.multipart.maxSize" value="524288000" />
+	<!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
+	<constant name="struts.multipart.saveDir " value="c:/tmp" />
+	
+	<!--配置全局映射视图，捕获所有 异常跳转指定页面  -->
+    <package name="base" extends="struts-default">
+    
+	</package>
+	<include file="struts-web.xml"/>
+</struts>    

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+		<class name="com.gdts.selecting.entity.InstituteInfo" table="institute_info" catalog="topicselecting_db">
+			<!--  -->
+			<id name="instituteId" type="java.lang.Integer">
+				<column name="institute_id"/>
+				<generator class="native"/>
+			</id>
+			<property name="instituteName" type="java.lang.String">
+				<column name="institute_name"></column>
+			</property>
+			<property name="institutePid" type="java.lang.Integer">
+				<column name="institute_pid"></column>
+			</property>
+		</class>
+</hibernate-mapping>

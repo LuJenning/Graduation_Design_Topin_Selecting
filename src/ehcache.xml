@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    		   xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">
+  <!-- 指定一个文件目录，当EHCache把数据写到硬盘上时，将把数据写到这个目录下 --> 
+<diskStore path="d:/ehcache/"/>
+  <!--  
+    name 设置缓存的名字，他的取值为类的完整名字或者类的集合的名字； 
+    maxElementsInMemory 设置基于内存的缓存可存放的对象的最大数目 
+    eternal 如果为true，表示对象永远不会过期，此时会忽略timeToIdleSeconds和timeToLiveSeconds，默认为false; 
+    timeToIdleSeconds 设定允许对象处于空闲状态的最长时间，以秒为单位； 
+    timeToLiveSeconds 设定对象允许存在于缓存中的最长时间，以秒为单位； 
+    overflowToDisk 如果为true,表示当基于内存的缓存中的对象数目达到maxElementsInMemory界限，会把溢出的对象写到基于硬盘的缓存中； 
+   --> 
+   <!-- 主要的特性有：
+		1. 快速
+		2. 简单
+		3. 多种缓存策略
+		4. 缓存数据有两级：内存和磁盘，因此无需担心容量问题
+		5. 缓存数据会在虚拟机重启的过程中写入磁盘
+		6. 可以通过RMI、可插入API等方式进行分布式缓存
+		7. 具有缓存和缓存管理器的侦听接口
+		8. 支持多缓存管理器实例，以及一个实例的多个缓存区域
+		9. 提供Hibernate的缓存实现 
+		-->
+  <!-- 设置缓存的默认数据过期策略 --> 
+  <defaultCache 
+    maxElementsInMemory="1000"
+    eternal="false"
+    timeToIdleSeconds="1200"
+    timeToLiveSeconds="1200"
+    overflowToDisk="true"
+  /> 
+  
+  <!-- SysUser缓存配置 -->
+    <cache 
+        name="com.gdts.selecting.entity.SysUser" 
+        maxElementsInMemory="100" 
+        eternal="false"
+        timeToIdleSeconds="1200" 
+        timeToLiveSeconds="1200" 
+        overflowToDisk="true" 
+    />
+    <!--  -->
+    <cache name="hellocache"
+        maxElementsInMemory = "1000"
+        eternal = "false"
+        timeToIdleSeconds="1200" 
+        timeToLiveSeconds="1200"
+        overflowToDisk="false" 
+        memoryStoreEvictionPolicy ="LRU"
+ />
+ <cache name="userCache"
+        maxElementsInMemory = "3000"
+        eternal = "false"
+        timeToIdleSeconds="1200" 
+        timeToLiveSeconds="1200"
+        overflowToDisk="false" 
+        memoryStoreEvictionPolicy ="LFU"
+ />
+ <cache name="topicCache"
+        maxElementsInMemory = "3000"
+        eternal = "false"
+        timeToIdleSeconds="1200" 
+        timeToLiveSeconds="1200"
+        overflowToDisk="false" 
+        memoryStoreEvictionPolicy ="LFU"
+ />
+    <!-- 用于查询缓存使用，如果指定了该缓存，那么查询缓存将放在该缓存中 -->
+    <cache  
+    name="org.hibernate.cache.StandardQueryCache"  
+    maxElementsInMemory="5"  
+    eternal="false"  
+    timeToLiveSeconds="120"  
+	overflowToDisk="true"/> 
+	
+    <!-- 时间戳缓存，内部使用，用于保存最近更新的表的时间戳，这是非常重要的，无需失效，关闭时间戳缓存区域的过期时间 -->
+    <cache  
+    name="org.hibernate.cache.UpdateTimestampsCache"  
+    maxElementsInMemory="5000"  
+    eternal="true"  
+    overflowToDisk="true"/> 
+    
+</ehcache> 

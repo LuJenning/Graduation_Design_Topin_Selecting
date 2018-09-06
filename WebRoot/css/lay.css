@@ -1,0 +1,13 @@
+.layui-input, .layui-textarea {
+    display: block;
+    width: 15%;
+    padding-left: 6px;
+    height: 26px;
+    border-radius: 4px;
+}
+.layui-input-block {
+
+    margin-left: 5px;
+    min-height: 36px;
+
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+	<bean name="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- hibernateProperties是用来配置Hibernate的属性信息 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<!-- 配置二级缓存 -->
+				<!-- 开启二级缓存 -->
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<!-- 开启查询缓存 -->
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<!-- ***指定二级缓存产品的提供商*** -->
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<!-- 指定缓存配置文件位置 -->
+				<prop
+					key="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</prop>
+				<!-- 强制Hibernate以更人性化的格式将数据存入二级缓存 -->
+				<prop key="hibernate.cache.use_structured_entries">true</prop>
+				<!-- Hibernate将收集有助于性能调节的统计数据 -->
+				<prop key="hibernate.generate_statistics">true</prop>
+
+			</props>
+		</property>
+		<!-- hbm方式 -->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<!-- Hibernate的实体bean的映射文件(可有多个) -->
+				<value>classpath:com/gdts/selecting/entity</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- transactionManager -->
+	<bean name="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+	<!-- aop配置:启用AspectJ对Annotation的支持 -->
+	<aop:aspectj-autoproxy />
+	<bean id="loggingAspect"
+		class="com.gdts.selecting.something.LoggingAspect" />
+</beans>

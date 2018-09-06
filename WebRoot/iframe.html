@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/SpringIframe.css" type="text/css">
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;color: #333;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";position: relative;}
+    </style>
+</head>
+<body>
+    <a style="display: block;font-size:100px;height: 500px;" href="javascript:;" onmousedown="doIframe(this,{'url':'http://www.bootcss.com/','tTitle':'Spring内置iframe'});">有本事你点我呀</a>
+    <!-- <div id="spring-iframe-box">
+        <div id="iframe-wrap">
+            <div id="iframe-top"><h3>在这里显示操作标题</h3><span>X</span></div>
+            <div class="iframe-body">
+                <iframe class="spring-iframe" name="spring-iframe" src="https://gitee.com/index/ent_poster/banner_5_2_a.png" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div> -->
+    <script type="text/javascript">
+
+        function getStyle(obj,attr){
+            return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+        };
+        function SpringIframe(ms,target,mJson,callBack){
+            /*
+                mJson = {
+                    url:'url',
+                    tTitle:'显示的标题'
+                }
+            */
+            var This = this;
+            var child = document.getElementById('spring-iframe-box');
+            if(child)document.body.removeChild(child);
+            var springIframe = document.createElement('div');
+            mJson.tTitle = mJson.tTitle || '在这里显示操作标题';
+            mJson.url = mJson.url || 'https://gitee.com/index/ent_poster/banner_5_2_a.png';
+            springIframe.id = "spring-iframe-box";
+            springIframe.innerHTML = '<div id="iframe-wrap">'
+                                   + '   <div id="iframe-top"><h3>'+mJson.tTitle+'</h3><span>X</span></div>'
+                                   + '   <div class="iframe-body">'
+                                   + '       <iframe class="spring-iframe" name="spring-iframe" src="'+mJson.url+'" frameborder="0"></iframe>'
+                                   + '   </div>'
+                                   + '</div>';
+            ms.onmouseup = function(){
+                callBack && callBack.call(this,springIframe,target,This);
+            };
+        };
+        SpringIframe.prototype = {
+            init : function(){
+                var springIframeBox = document.getElementById('spring-iframe-box');
+                var iframeTop = document.getElementById('iframe-top');
+                var closeSpan = document.getElementById('iframe-top').getElementsByTagName('span')[0];
+                var maxW = window.innerWidth,
+                    maxH = window.innerHeight;
+                springIframeBox.style.width = maxW + 'px';
+                springIframeBox.style.height = maxH + 'px';
+                iframeTop.parentNode.style.left = (maxW-900)/2 + "px";
+                iframeTop.parentNode.style.top = (maxH-500)/2 + "px";
+                iframeTop.onmousedown = function(ev){
+                    ev = ev || window.event;
+                    var cx = ev.clientX,
+                        cy = ev.clientY;
+                    var p = iframeTop.parentNode;
+                    var ofl = p.offsetLeft,
+                        oft = p.offsetTop;
+                    document.onmousemove = function(eve){
+                        eve = eve || window.event;
+                        var mx = eve.clientX;
+                        var my = eve.clientY;
+                        var x = mx - cx + ofl;
+                        var y = my - cy + oft;
+                        p.style.left = x + "px";
+                        p.style.top =  y + "px";
+                        this.onmouseup = function(){
+                            this.onmousemove = null;
+                            this.onmouseup = null;
+                        };
+                    };
+                };
+                closeSpan.onclick = function(){
+                    springIframeBox.style.display = 'none';
+                };
+            }
+        };
+
+        function doIframe(param,mJson){
+            new SpringIframe(param,document.body,mJson,function(item,target,obj){
+                target.appendChild(item);
+                obj.init();
+                window.onresize = function(){
+                    obj.init();
+                };
+            });
+        };
+    </script>
+</body>
+</html>
